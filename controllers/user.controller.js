@@ -58,13 +58,13 @@ module.exports.getUsers = async (req, res, next) => {
 
 module.exports.getCurrentUser = async (req, res, next) => {
     try {
-        const email = req?.query?.email;
+        const email = req.query.email;
 
         if (!email) {
             return res.status(200).json([]);
         }
 
-        const decodedEmail = req?.decoded?.email;
+        const decodedEmail = req.decoded.email;
 
         if (email !== decodedEmail) {
             return res.status(403).json({ error: true, message: 'Forbidden access' });
