@@ -106,7 +106,10 @@ module.exports.updateUserRole = async (req, res, next) => {
         const updatedRole = 'manager'; // The role you want to set
 
         // Use Mongoose to update the user's role
-        const user = await User.findByIdAndUpdate(userId, { role: updatedRole }, { new: true });
+        const user = await User.findByIdAndUpdate(
+            userId,
+            { role: updatedRole },
+            { new: true });
 
         if (!user) {
             // User not found
