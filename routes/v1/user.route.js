@@ -8,7 +8,7 @@ router.route('/')
     .get(verifyJWT, usersController.getUsers)
 
 router.route('/currentUser')
-    .get(usersController.getCurrentUser)
+    .get(verifyJWT, usersController.getCurrentUser)
     .patch(verifyJWT, usersController.updateProfile)
 
 router.route('/:email')
