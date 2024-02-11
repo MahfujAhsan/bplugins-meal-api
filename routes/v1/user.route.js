@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.route('/')
     .post(usersController.createUser)
-    .get(verifyJWT, usersController.getUsers)
+    .get(usersController.getUsers)
 
 router.route('/currentUser')
     .get(verifyJWT, usersController.getCurrentUser)

@@ -3,7 +3,7 @@ const User = require('../models/userModel'); // Import your User model
 
 const verifyJWT = async (req, res, next) => {
     try {
-        const authorization = req.headers.authorization;
+        const authorization = req?.headers?.authorization;
 
         if (!authorization) {
             return res.status(401).json({ error: true, message: 'Unauthorized access' });
@@ -11,7 +11,7 @@ const verifyJWT = async (req, res, next) => {
 
         const token = authorization.split(' ')[1];
 
-        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+        jwt.verify(token, process?.env?.ACCESS_TOKEN_SECRET, async (err, decoded) => {
             if (err) {
                 return res.status(401).json({ error: true, message: 'Unauthorized access' });
             }
