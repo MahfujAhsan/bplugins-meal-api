@@ -103,27 +103,35 @@ module.exports.checkManagerStatus = async (req, res, next) => {
 module.exports.updateUserRole = async (req, res, next) => {
     try {
         const userId = req.params.id;
-        const updatedRole = 'manager'; // The role you want to set
+        const updatedRole = req.body.role;
 
-        // Use Mongoose to update the user's role
+        if (updatedRole === 'manager') {
+            const currentManager = await User.findOne({ role: 'manager' });
+
+            if (currentManager && currentManager._id !== userId) {
+                currentManager.role = 'member';
+                await currentManager.save();
+            }
+        }
+
         const user = await User.findByIdAndUpdate(
             userId,
             { role: updatedRole },
-            { new: true });
+            { new: true }
+        );
 
         if (!user) {
-            // User not found
             return res.status(404).json({ error: true, message: 'User not found' });
         }
 
-        // Respond with the updated user
         res.status(200).json(user);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: true, message: 'Internal server error' });
-        next(err);
+        next(err); // Pass the error for further handling
     }
-}
+};
+
 
 module.exports.updateProfile = async (req, res, next) => {
     try {
