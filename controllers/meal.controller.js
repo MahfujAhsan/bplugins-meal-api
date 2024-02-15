@@ -21,7 +21,7 @@ module.exports.createMeal = async (req, res, next) => {
         if (existingMeal) {
             return res.status(409).json({
                 success: false,
-                message: "A User Can Only One Skip Request Per Day!"
+                message: "You Can Only One Skip Request a Day!"
             })
         }
 
