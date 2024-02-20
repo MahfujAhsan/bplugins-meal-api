@@ -58,7 +58,7 @@ module.exports.getUsers = async (req, res, next) => {
 
 module.exports.getCurrentUser = async (req, res, next) => {
     try {
-        const email = req.query.email;
+        const email = req?.query?.email;
 
         if (!email) {
             return res.status(200).json([]);
@@ -81,7 +81,7 @@ module.exports.getCurrentUser = async (req, res, next) => {
 
 module.exports.checkManagerStatus = async (req, res, next) => {
     try {
-        const userEmail = req.params.email
+        const userEmail = req.params.email;
 
         if (req.decoded.email !== userEmail) {
             return res.status(200).json({ manager: false })

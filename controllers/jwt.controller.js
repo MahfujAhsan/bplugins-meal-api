@@ -5,7 +5,7 @@ module.exports.generateJWT = (req, res) => {
         const user = req.body;
 
         // Create a JWT token using the user data and your secret key
-        const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '12h' });
+        const token = jwt?.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '12h' });
 
         // Send the token in the response
         res.status(200).json({ token });

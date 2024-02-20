@@ -5,14 +5,19 @@ const verifyJWT = async (req, res, next) => {
     try {
         const authorization = req?.headers?.authorization;
 
+        console.log(req?.headers)
+
         if (!authorization) {
+            console.log(authorization)
             return res.status(401).json({ error: true, message: 'Unauthorized access' });
         }
 
         const token = authorization.split(' ')[1];
 
-        jwt.verify(token, process?.env?.ACCESS_TOKEN_SECRET, async (err, decoded) => {
+
+        jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, async (err, decoded) => {
             if (err) {
+                console.log(err)
                 return res.status(401).json({ error: true, message: 'Unauthorized access' });
             }
 
