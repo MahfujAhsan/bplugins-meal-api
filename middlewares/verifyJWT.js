@@ -5,8 +5,6 @@ const verifyJWT = async (req, res, next) => {
     try {
         const authorization = req?.headers?.authorization;
 
-        console.log(req?.headers)
-
         if (!authorization) {
             console.log(authorization)
             return res.status(401).json({ error: true, message: 'Unauthorized access' });

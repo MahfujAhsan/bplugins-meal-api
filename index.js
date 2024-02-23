@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 require('dotenv').config();
 const connectDB = require('./utils/dbConnect');
-const port = process.env.PORT || 200;
+const port = process.env.PORT || 5000;
 const jwtRoutes = require("./routes/v1/jwt.route");
 const userRoutes = require("./routes/v1/user.route");
 const depositRoutes = require("./routes/v1/deposit.route");

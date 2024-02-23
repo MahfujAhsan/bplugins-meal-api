@@ -11,7 +11,7 @@ router.route('/currentUser')
     .get(verifyJWT, usersController.getCurrentUser)
     .patch(verifyJWT, usersController.updateProfile)
 
-router.route('/user/:email')
+router.route('/:email')
     .get(verifyJWT, usersController.checkManagerStatus)
 
 router.route('/:id')
